@@ -41,10 +41,10 @@ afterEvaluate {
     publishing {
         publications {
             release(MavenPublication) {
-    from components.release
+                from components.release
                 groupId = "com.example.toaster"//  libray package name
-    artifactId = "toaster" // libaray name
-                 version = '0.1.0'
+                artifactId = "ToasterMsg" // libaray name
+                version = '0.1.0'
             }
         }
     }
