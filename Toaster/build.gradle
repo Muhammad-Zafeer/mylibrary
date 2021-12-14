@@ -1,19 +1,20 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
+    id 'maven-publish'
 }
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion '30.0.2'
+    compileSdkVersion 30
+    buildToolsVersion '30.0.3'
 
     defaultConfig {
-        applicationId "com.example.mylibrary"
         minSdkVersion 19
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -32,10 +33,19 @@ dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
-    implementation project(path: ':Toaster')
-    testImplementation 'junit:junit:'
+    testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    implementation 'com.github.Muhammad-Zafeer:mylibrary:2.0'
+}
+afterEvaluate {
+    publishing {
+        publications {
+            release(MavenPublication) {
+    from components.release
+                groupId = "com.example.toaster"//  libray package name
+    artifactId = "toaster" // libaray name
+                 version = '0.1.0'
+            }
+        }
+    }
 }
